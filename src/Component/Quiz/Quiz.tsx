@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import "./Quiz.css"
 
 function Quiz() {
   const [data, setData] = useState<any>([]);
@@ -54,22 +55,25 @@ function Quiz() {
     }
   };
 
-  console.log(email);
+
   const incrementQuestion = () => {
     const increment = index + 1;
     setIndex(increment);
     setCheckBoxValue("");
   };
   return (
-    <div className="container bg-success p-3">
-      {index <= 8 && <h5 className="text-white">Qestion No: {index}</h5>}
+    <div className="bg bg-success p-3">
+      <div className="center">
+      {index <= 8 && <h5 className="text-color">Question No: {index}</h5>}
       {data
         .filter((data: { id: number }) => data.id === index)
         .map((data: any) => {
           const id = data.id;
           return (
             <div key={data.id}>
-              <p className="text-white mt-3 text-start"> {data.question}</p>
+              <div>
+              <p className="mt-3 fw-bold text-start"> {data.question}</p>
+              </div>
               {data.options.map((p: any) => {
                 return (
                   <>
@@ -86,7 +90,7 @@ function Quiz() {
                         />
                       </div>{" "}
                       <div className="col-md-2 text-start ">
-                        <p className="text-white">{p}</p>
+                        <p className="fw-bold">{p}</p>
                       </div>
                     </div>
                   </>
@@ -99,6 +103,7 @@ function Quiz() {
         <button
           onClick={() => {
             incrementQuestion();
+            
           }}
           className="btn btn-light"
         >
@@ -116,6 +121,7 @@ function Quiz() {
           Submit
         </button>
       )}
+      </div>
     </div>
   );
 }

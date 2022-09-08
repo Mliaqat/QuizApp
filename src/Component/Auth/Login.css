@@ -1,0 +1,18 @@
+.layout {
+    width: 30rem;
+    padding: 3rem;
+    border-radius: 1rem;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}
+
+.login_btn {
+    color: black;
+    background-color: #ffc312;
+    width: 100%;
+    font-weight: 600;
+}
+
+label {
+    font-weight: 600;
+    font-size: 18px;
+}

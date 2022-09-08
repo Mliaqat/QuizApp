@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "./Login.css"
 
 function LogIn() {
   const [data, setData] = useState<any>([]);
@@ -57,19 +58,19 @@ function LogIn() {
         alert("Already Exist");
       } else {
         localStorage.setItem("email", userInput.useremail);
-        navigate("/QuizApp");
+        navigate("/quiz");
       }
     }
   };
 
   return (
-    <>
+    <div className="center">
       <form
-        className="form w-50 m-auto bg-success position-absolute mt-5 start-0  end-0 p-3"
+        className="form  p-3 layout"
         onSubmit={handleSubmitUserDetails}
       >
         <div>
-          <h3 className="text-white"> Log in</h3>
+          <h3 className="text-white text-center"> Log in</h3>
           <div className="row">
             {" "}
             <div className="col-md-12">
@@ -79,31 +80,31 @@ function LogIn() {
               {" "}
               <input
                 name="useremail"
-                className="rounded-pill border-0 w-50"
+                className="border-0 rounded w-100"
                 onChange={handleUserEmail}
               />
             </div>
-          </div>
-          {admin && (
-            <div className="row">
-              <div className="col-md-12 ">
-                <label className="mt-3 text-white">Enter Password:</label>
-              </div>{" "}
-              <div className="col-md-12 mt-3">
-                {" "}
-                <input
-                  name="userpassword"
-                  className="rounded-pill border-0 w-50"
-                  onChange={handleUserEmail}
-                />
-              </div>
             </div>
-          )}
-          <div className="row">
+            {admin && (
+              <div className="row">
+                <div className="col-md-12 ">
+                  <label className="mt-3 text-white">Enter Password:</label>
+                </div>
+                <div className="col-md-12 mt-3">
+                  {" "}
+                  <input
+                    name="userpassword"
+                    className="border-0 rounded w-100"
+                    onChange={handleUserEmail}
+                  />
+                </div>
+              </div>
+            )}
+            <div className="row">
             <div className="col-md-12">
               <input
                 type="checkbox"
-                className="ms-2 mt-3"
+                className="mt-3"
                 value="Admin"
                 onChange={(e) => setAdmin(e.target.checked)}
               />
@@ -113,12 +114,12 @@ function LogIn() {
 
           <div className="row mt-2">
             <div className="col-md-12 mt-3 ">
-              <input type="submit" className="btn btn-light" value="submit" />{" "}
+              <input type="submit" className="btn login_btn" value="Submit" />{" "}
             </div>
           </div>
         </div>
       </form>
-    </>
+    </div>
   );
 }
 
