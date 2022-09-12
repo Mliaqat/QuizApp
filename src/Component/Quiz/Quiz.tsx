@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./Quiz.css"
+import "./Quiz.css";
 
 function Quiz() {
   const [data, setData] = useState<any>([]);
@@ -19,7 +19,7 @@ function Quiz() {
       )
       .then((response) => {
         const converdata = Object.keys(response.data);
-        console.log(converdata);
+
         const userarray = converdata.map((p) => {
           const arraydata = response.data[p];
           return arraydata;
@@ -44,17 +44,12 @@ function Quiz() {
       });
   };
 
-  console.log(correct);
-
-  const handleChange = (id: number, p: React.SetStateAction<string>) => {
-    setCheckBoxValue(p);
-    console.log(id, p);
-    console.log();
-    if (data[id - 1].correctOption === p) {
+  const handleChange = (id: number, index: React.SetStateAction<string>) => {
+    setCheckBoxValue(index);
+    if (data[id - 1].correctOption === index) {
       setCorrect(correct + 1);
     }
   };
-
 
   const incrementQuestion = () => {
     const increment = index + 1;
@@ -64,63 +59,61 @@ function Quiz() {
   return (
     <div className="bg bg-success p-3">
       <div className="center">
-      {index <= 8 && <h5 className="text-color">Question No: {index}</h5>}
-      {data
-        .filter((data: { id: number }) => data.id === index)
-        .map((data: any) => {
-          const id = data.id;
-          return (
-            <div key={data.id}>
-              <div>
-              <p className="mt-3 fw-bold text-start"> {data.question}</p>
-              </div>
-              {data.options.map((p: any) => {
-                return (
-                  <>
-                    <div className="row ">
-                      <div className="col-md-1 text-end">
-                        {" "}
-                        <input
-                          type="radio"
-                          name="quiz"
-                          onChange={() => {
-                            handleChange(id, p);
-                          }}
-                          value={checkBoxValue}
-                        />
-                      </div>{" "}
-                      <div className="col-md-2 text-start ">
-                        <p className="fw-bold">{p}</p>
+        {index <= 8 && <h5 className="text-color">Question No: {index}</h5>}
+        {data
+          .filter((data: { id: number }) => data.id === index)
+          .map((data: any) => {
+            const id = data.id;
+            return (
+              <div key={data.id}>
+                <div>
+                  <p className="mt-3 fw-bold text-start"> {data.question}</p>
+                </div>
+                {data.options.map((p: any) => {
+                  return (
+                    <>
+                      <div className="row ">
+                        <div className="col-md-1 text-end">
+                          {" "}
+                          <input
+                            type="radio"
+                            name="quiz"
+                            onChange={() => {
+                              handleChange(id, p);
+                            }}
+                            value={checkBoxValue}
+                          />
+                        </div>{" "}
+                        <div className="col-md-2 text-start ">
+                          <p className="fw-bold">{p}</p>
+                        </div>
                       </div>
-                    </div>
-                  </>
-                );
-              })}
+                    </>
+                  );
+                })}
+              </div>
+            );
+          })}
+        {index <= 8 && (
+          <button
+            onClick={() => {
+              incrementQuestion();
+            }}
+            className="btn btn-light"
+          >
+            Next
+          </button>
+        )}
+        {index > 8 && (
+          <>
+            <div className="text-white">
+              Total Score: {correct}/{data.length}
             </div>
-          );
-        })}
-      {index <= 8 && (
-        <button
-          onClick={() => {
-            incrementQuestion();
-            
-          }}
-          className="btn btn-light"
-        >
-          Next
-        </button>
-      )}
-      {index > 8 && (
-        <div className="text-white">
-          {" "}
-          you scored {correct}/{data.length}
-        </div>
-      )}
-      {index > 8 && (
-        <button onClick={postResult} className="btn btn-light ms-3 mt-3">
-          Submit
-        </button>
-      )}
+            <button onClick={postResult} className="btn btn-light ms-3 mt-3">
+              Submit
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

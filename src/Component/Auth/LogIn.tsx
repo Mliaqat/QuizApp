@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import "./Login.css"
+import "./Login.css";
 
 function LogIn() {
   const [data, setData] = useState<any>([]);
@@ -65,10 +65,7 @@ function LogIn() {
 
   return (
     <div className="center">
-      <form
-        className="form  p-3 layout"
-        onSubmit={handleSubmitUserDetails}
-      >
+      <form className="form  p-3 layout" onSubmit={handleSubmitUserDetails}>
         <div>
           <h3 className="text-white text-center"> Log in</h3>
           <div className="row">
@@ -84,23 +81,23 @@ function LogIn() {
                 onChange={handleUserEmail}
               />
             </div>
-            </div>
-            {admin && (
-              <div className="row">
-                <div className="col-md-12 ">
-                  <label className="mt-3 text-white">Enter Password:</label>
-                </div>
-                <div className="col-md-12 mt-3">
-                  {" "}
-                  <input
-                    name="userpassword"
-                    className="border-0 rounded w-100"
-                    onChange={handleUserEmail}
-                  />
-                </div>
-              </div>
-            )}
+          </div>
+          {admin && (
             <div className="row">
+              <div className="col-md-12 ">
+                <label className="mt-3 text-white">Enter Password:</label>
+              </div>
+              <div className="col-md-12 mt-3">
+                {" "}
+                <input
+                  name="userpassword"
+                  className="border-0 rounded w-100"
+                  onChange={handleUserEmail}
+                />
+              </div>
+            </div>
+          )}
+          <div className="row">
             <div className="col-md-12">
               <input
                 type="checkbox"
