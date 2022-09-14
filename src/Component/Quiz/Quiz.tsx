@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import "./Quiz.css";
+import "./Quiz.scss";
 
 function Quiz() {
   const [data, setData] = useState<any>([]);
@@ -57,8 +57,9 @@ function Quiz() {
     setCheckBoxValue("");
   };
   return (
-    <div className="bg bg-success p-3">
-      <div className="center">
+    <div className="quiz-wrapper">
+    <div className="bg bg-success p-3 ">
+      <div className="center form">
         {index <= 8 && <h5 className="text-color">Question No: {index}</h5>}
         {data
           .filter((data: { id: number }) => data.id === index)
@@ -106,7 +107,7 @@ function Quiz() {
         )}
         {index > 8 && (
           <>
-            <div className="text-white">
+            <div className="fw-bold">
               Total Score: {correct}/{data.length}
             </div>
             <button onClick={postResult} className="btn btn-light ms-3 mt-3">
@@ -115,6 +116,7 @@ function Quiz() {
           </>
         )}
       </div>
+    </div>
     </div>
   );
 }
