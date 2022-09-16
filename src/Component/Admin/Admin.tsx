@@ -5,7 +5,9 @@ function Admin() {
   const [data, setData] = useState<any>([]);
   const quizProgress = async () => {
     await axios
-      .get("https://orcalotest-default-rtdb.firebaseio.com/scoreCard.json")
+      .get(
+        "https://retest-orcalo-db-default-rtdb.firebaseio.com/scoreCard.json"
+      )
       .then((response) => {
         const converdata = Object.keys(response.data);
         console.log(converdata);
@@ -37,7 +39,7 @@ function Admin() {
         return (
           <div className="row">
             <div className="col-md-4"> {p.score}</div>
-            <div className="col-md-4"> {p.userEmail}</div>
+            <div className="col-md-4"> {p.email}</div>
           </div>
         );
       })}

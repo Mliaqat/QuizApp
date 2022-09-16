@@ -15,7 +15,7 @@ function Quiz() {
   const QuizData = async () => {
     await axios
       .get(
-        "https://orcalotest-default-rtdb.firebaseio.com/quizAppQuestions.json"
+        "https://retest-orcalo-db-default-rtdb.firebaseio.com/quizAppQuestions.json"
       )
       .then((response) => {
         const converdata = Object.keys(response.data);
@@ -36,7 +36,7 @@ function Quiz() {
   const postResult = async () => {
     await axios
       .post(
-        "https://orcalotest-default-rtdb.firebaseio.com/scoreCard.json",
+        "https://retest-orcalo-db-default-rtdb.firebaseio.com/scoreCard.json",
         userdata
       )
       .then((response) => {

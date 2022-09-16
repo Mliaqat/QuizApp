@@ -19,7 +19,7 @@ function LogIn() {
   };
   const getUserDetails = async () => {
     await axios
-      .get("https://orcalotest-default-rtdb.firebaseio.com/LoggedInEmails.json")
+      .get("https://retest-orcalo-db-default-rtdb.firebaseio.com/LoggedInEmails.json")
       .then((response) => {
         const converdata = Object.keys(response.data);
 
