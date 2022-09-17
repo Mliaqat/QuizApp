@@ -64,10 +64,11 @@ function LogIn() {
   };
 
   return (
+    <div className="bg-img">
     <div className="center">
       <form className="p-3 layout" onSubmit={handleSubmitUserDetails}>
         <div>
-          <h3 className="text-white text-center"> Log in</h3>
+          <h3 className="text-white text-center">{admin ? "Log in" : "Quiz"} </h3>
           <div className="row">
             {" "}
             <div className="col-md-12">
@@ -111,11 +112,12 @@ function LogIn() {
 
           <div className="row mt-2">
             <div className="col-md-12 mt-3 ">
-              <input type="submit" className="btn login_btn" value="Submit" />{" "}
+              <input type="submit" className="btn login_btn" value={admin ? "Submit": "Start Quiz"} />{" "}
             </div>
           </div>
         </div>
       </form>
+    </div>
     </div>
   );
 }
